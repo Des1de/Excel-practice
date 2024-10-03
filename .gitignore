@@ -1,0 +1,7 @@
+**/logs
+**/bin
+**/obj
+**/content
+
+/.vs
+/.config
