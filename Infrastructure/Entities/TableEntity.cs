@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 public class TableEntity
 { 
-    [Key]
     public Guid TableId { get; set; }
     public string BankName { get; set; } = null!;
     public string TableName { get; set; } = null!; 
