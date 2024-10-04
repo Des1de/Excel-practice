@@ -1,7 +1,11 @@
 var builder = WebApplication.CreateBuilder(args);
 
+var ConnectionString = builder.Configuration.GetConnectionString(nameof(ExcelDbContext)); 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureDatabase(ConnectionString); 
 
 var app = builder.Build();
 
