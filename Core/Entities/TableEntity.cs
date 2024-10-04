@@ -1,6 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
-
 public class TableEntity
 { 
     public Guid TableId { get; set; }
