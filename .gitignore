@@ -1,7 +1,7 @@
 **/logs
 **/bin
 **/obj
-**/content
+**/UploadedFiles
 
 /.vs
 /.config

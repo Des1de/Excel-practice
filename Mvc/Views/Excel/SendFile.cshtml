@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Загрузка Excel файла";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.Message
+    </div>
+}
+
+<form asp-controller="Excel" asp-action="UploadFile" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="excelFile">Выберите файл Excel</label>
+        <input type="file" name="excelFile" accept=".xls,.xlsx" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+    }
+    .alert {
+        margin-bottom: 20px;
+    }
+</style>
