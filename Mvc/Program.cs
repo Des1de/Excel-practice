@@ -7,7 +7,10 @@ var ConnectionString = builder.Configuration.GetConnectionString(nameof(ExcelDbC
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.ConfigureDatabase(ConnectionString); 
+builder.Services.ConfigureDatabase(ConnectionString)
+    .ConfigureServices(); 
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var app = builder.Build();
 

@@ -6,6 +6,7 @@ public class TableEntity
     public string Period { get; set; } = null!; 
     public DateTime Date { get; set; }
     public string Currency { get; set; } = null!; 
-    public IEnumerable<ClassEntity> Classes = null!; 
+    public List<ClassEntity> Classes = null!; 
 
+    public TableEntity(){}
 }

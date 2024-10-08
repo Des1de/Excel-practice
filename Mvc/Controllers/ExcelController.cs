@@ -2,6 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 
 public class ExcelController : Controller
 {
+    private readonly IExcelSerivce _excelService;
+
+    public ExcelController(IExcelSerivce excelSerivce)
+    {
+        _excelService = excelSerivce;
+    }
+
     [HttpGet]
     public IActionResult UploadFile()
     {
@@ -35,6 +42,8 @@ public class ExcelController : Controller
             {
                 await excelFile.CopyToAsync(stream);
             }
+            
+            await _excelService.ConvertToDatabase(filePath);
 
             // Успешное сообщение
             ViewBag.Message = "Файл успешно загружен!";
