@@ -121,10 +121,20 @@ public class ExcelService : IExcelSerivce
 
     public async Task<TableEntity> GetTable(Guid tableId)
     {
-        return await _context.Tables.Where(t => t.TableId == tableId).AsNoTracking()
+        var table = await _context.Tables
             .Include(t => t.Classes).ThenInclude(c => c.Accounts).ThenInclude(a => a.Turnover)
             .Include(t => t.Classes).ThenInclude(c => c.Accounts).ThenInclude(a => a.ClosingBalance)
-            .Include(t => t.Classes).ThenInclude(c => c.Accounts).ThenInclude(a => a.OpeningBalance).FirstAsync();
+            .Include(t => t.Classes).ThenInclude(c => c.Accounts).ThenInclude(a => a.OpeningBalance)
+            .Where(t => t.TableId == tableId)
+            .FirstAsync();
+        table.Classes.Sort((x,y) => x.ClassNumber.CompareTo(y.ClassNumber));
+
+        foreach(var classEntity in table.Classes)
+        {
+            classEntity.Accounts.Sort((x,y) => x.AccountNumber.CompareTo(y.AccountNumber));
+        }
+
+        return table; 
     }
 
     public async Task<IEnumerable<TableEntity>> GetTableEntities()

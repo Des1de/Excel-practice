@@ -1,0 +1,68 @@
+@model TableEntity
+
+<h1>@Model.TableName</h1>
+<h2>@Model.Period</h2>
+<h2>@Model.BankName</h2>
+<h2>@Model.Date</h2>
+<h2>@Model.Currency</h2>
+
+@foreach(var classEntity in Model.Classes)
+{
+    <table>
+    <caption>@classEntity.ClassName</caption>
+    <thead>
+        <tr>
+            <th>Б/сч</th>
+            <th>ВХОДЯЩЕЕ САЛЬДО Актив</th>
+            <th>ВХОДЯЩЕЕ САЛЬДО Пассив</th>
+            <th>ОБОРОТЫ Дебет</th>
+            <th>ОБОРОТЫ Кредит</th>
+            <th>ИСХОДЯЩЕЕ САЛЬДО Актив</th>
+            <th>ИСХОДЯЩЕЕ САЛЬДО Пассив</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var account in classEntity.Accounts)
+        {
+        <tr>
+            <td>@account.AccountNumber</td>
+            <td>@account.OpeningBalance.Active</td>
+            <td>@account.OpeningBalance.Passive</td>
+            <td>@account.Turnover.Debit</td>
+            <td>@account.Turnover.Credit</td>
+            <td>@account.ClosingBalance.Active</td>
+            <td>@account.ClosingBalance.Active</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+}
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: right;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    caption {
+        caption-side: top;
+        text-align: left;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+</style>
